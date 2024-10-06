@@ -1,1 +1,1 @@
-Food-wast-app
+Food-waste-app
