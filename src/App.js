@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import About from './Components/About/About';
 import Mission from './Components/Mission/Mission';
 import Contact from './Components/Contact/Contact';
+import Login from './Components/Auth/Login';
+import Signup from './Components/Auth/Signup';
 
 
 function App() {
@@ -20,7 +22,10 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/mission' element={<Mission />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+
         
       </Routes>
 

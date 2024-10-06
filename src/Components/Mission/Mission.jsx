@@ -33,10 +33,8 @@ const Mission = () => {
         <div className='mission'>
              <img src={images[currentIndex]} alt={`Slide ${currentIndex}`}  className='images'/>
       <a className="prev" onClick={prevSlide}>
-        &#10094;
       </a>
       <a className="next" onClick={nextSlide}>
-        &#10095;
       </a>
         </div>
         <div className="mission-content">
