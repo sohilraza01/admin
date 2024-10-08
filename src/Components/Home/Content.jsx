@@ -15,7 +15,7 @@ const Content = () => {
               In fact, nearly one-third of all food produced in the world is discarded or wasted for various reasons. That equates to nearly 1.3 billion tons every year.
             </li>
             <li>
-              So instead of wasting the food, it should be better donated to the needy because nearly about 1000 needy people sleep without food due to a lack of money or availability.
+              So instead of wasting the food, it should be better donated to the needy because nearly about thousands of  needy people sleep without food due to a lack of money or availability.
             </li>
             <li>
               So don't waste food; it's like wasting one of the most precious things given by God to us.
