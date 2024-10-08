@@ -10,7 +10,6 @@
 
   .side-left {
     width: 50%;
-    height: 55vh;
     background-color: #ffff66; 
     padding: 20px;
     text-align: center;
@@ -46,9 +45,8 @@
     border-radius: 5px;
     font-family: 'Arial', sans-serif;
     margin: 0 40px;
-    height: 80vh;
-    
   }
+    
   
   .middle p {
     font-size: 2rem;
@@ -69,7 +67,6 @@
   
   .right-side {
     width: 50%;
-    height: 60vh;
     background-color: #b3e5fc; 
     padding: 20px;
     text-align: center;
