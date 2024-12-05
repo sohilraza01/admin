@@ -13,7 +13,7 @@ function Login(){
           <input className="input-data" type='text' required /> <br />
           <label htmlFor="pass"><RiLockPasswordFill/> Password</label>
           <input type='password'  className='input-data' required/>
-           <button id="btn">Login</button>
+           <button id="btn"><Link to='/dashboard' style={{textDecoration:'none', color:'white'}}>Login</Link></button>
          <p className="signup-link" >Not yet a member ? <Link to='/signup'>Signup</Link></p>
            </div>
         </form>

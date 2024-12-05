@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import './Signup.css'
 function Signup() {
+  const signupHandler = (e) =>{
+    e.preventDefault();
+    alert('hey there !')
+  }
     return ( 
         <div className="signup">
         <form  action="">
@@ -12,8 +16,7 @@ function Signup() {
           <input type='email' name='email' required />
           <label htmlFor="password">Password</label>
           <input type='password' name='password' required />
-           <label htmlFor="password">Confirm-Password</label>
-           <input type="password" name="password" required />
+           
            <label htmlFor="role">Role</label>
            <select className='role'> 
            
@@ -21,7 +24,7 @@ function Signup() {
             <option>Agent</option>
             <option>Donor</option>
            </select>
-           <button id="btn">Sign-up</button>
+           <button id="btn" onClick={signupHandler}>Sign-up</button>
            <p>Already have an Account ? <Link to='/login'>Login</Link></p>
            </div>
         </form>

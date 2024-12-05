@@ -9,9 +9,14 @@ import Mission from './Components/Mission/Mission';
 import Contact from './Components/Contact/Contact';
 import Login from './Components/Auth/Login';
 import Signup from './Components/Auth/Signup';
+import Pending from './Components/Status/Pending';
+import Previous from './Components/Status/Previous';
 
 
 function App() {
+
+  
+  
   return (
     <Router>
       <Navbar />
@@ -24,13 +29,16 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/pending' element={<Pending />} />
+        <Route path='/previous' element={<Previous />} />
+        <Route path='/completed/:status' element={<Dashboard />} />
 
         
-      </Routes>
-
       
+      </Routes>
       <Footer />
+      
     </Router>
   );
 }

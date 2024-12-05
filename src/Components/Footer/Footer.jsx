@@ -29,7 +29,7 @@ const Footer = () => {
           <div class="footer-contact">
             <h3>Contact Us</h3>
             <p>Email: mitmoradabad@gmail.com</p>
-            <p>Phone: +123 456 789</p>
+            <p>Phone: +91 </p>
           </div>
         </div>
       
