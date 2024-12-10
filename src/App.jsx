@@ -12,7 +12,6 @@ import Signup from './Components/Auth/Signup';
 import Pending from './Components/Status/Pending';
 import Previous from './Components/Status/Previous';
 
-
 function App() {
 
   
@@ -33,7 +32,6 @@ function App() {
         <Route path='/pending' element={<Pending />} />
         <Route path='/previous' element={<Previous />} />
         <Route path='/completed/:status' element={<Dashboard />} />
-
         
       
       </Routes>
