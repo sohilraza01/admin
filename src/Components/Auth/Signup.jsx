@@ -98,7 +98,7 @@ function Signup() {
             className="role"
           >
             <option value="Admin">Admin</option>
-            <option value="Agent">Agent</option>
+            <option value="Agent">NGO</option>
             <option value="Donor">Donor</option>
           </select>
 

@@ -5,7 +5,7 @@
     width: 40%;
     margin: 20px auto;
     /* margin-top: 70px; */
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     border: 2px #ddd;

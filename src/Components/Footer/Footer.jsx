@@ -29,12 +29,12 @@ const Footer = () => {
           <div class="footer-contact">
             <h3>Contact Us</h3>
             <p>Email: mitmoradabad@gmail.com</p>
-            <p>Phone: +91 </p>
+            <p>Phone: +91 7500559279</p>
           </div>
         </div>
       
         <div class="footer-bottom">
-          <p>&copy; MIT Final Year Students  2025 .</p>
+          <p>&copy; MIT Final Year Students  2025 </p>
         </div>
       </footer>
       

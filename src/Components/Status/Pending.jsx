@@ -1,24 +1,28 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
-import './Status.css';
+import "./Status.css";
 
 const Pending = () => {
   const [pendingDonations, setPendingDonations] = useState([]);
 
   useEffect(() => {
-    // Simulate fetching pending donations
     const fetchPendingDonations = async () => {
-      const data = [
-        { donor: "Sohil", foodType: "Grains", quantity: "50kg", status: "Pending", date: "2024-12-04" },
-        { donor: "Shivam", foodType: "Vegetables", quantity: "20kg", status: "Pending", date: "2024-12-03" },
-        { donor: "Shiv", foodType: "Fruits", quantity: "20kg", status: "Pending", date: "2024-12-03" },
-        { donor: "Sujal", foodType: "Rice", quantity: "20kg", status: "Pending", date: "2024-12-03" },
-      ];
-      setPendingDonations(data);
+      try {
+        const response = await fetch("http://localhost:8800/donations");
+        if (!response.ok) {
+          throw new Error("Failed to fetch pending donations");
+        }
+
+        const data = await response.json();
+        const pending = data.filter((donation) => donation.status === "Pending"); // Filter for pending status
+        setPendingDonations(pending);
+      } catch (error) {
+        console.error("Error fetching pending donations:", error);
+      }
     };
 
     fetchPendingDonations();
-  }, []);
+  }, []); // Fetch data on mount
 
   return (
     <div className="status">
@@ -29,6 +33,7 @@ const Pending = () => {
           <table className="pending-data">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Donor Name</th>
                 <th>Food Type</th>
                 <th>Quantity</th>
@@ -37,9 +42,10 @@ const Pending = () => {
               </tr>
             </thead>
             <tbody>
-              {pendingDonations.map((donation, index) => (
-                <tr key={index}>
-                  <td>{donation.donor}</td>
+              {pendingDonations.map((donation) => (
+                <tr key={donation._id}>
+                  <td>{donation._id}</td> {/* Display the ID */}
+                  <td>{donation.donorName}</td>
                   <td>{donation.foodType}</td>
                   <td>{donation.quantity}</td>
                   <td>{donation.status}</td>
