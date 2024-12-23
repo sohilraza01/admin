@@ -17,9 +17,9 @@ const Sidebar = () => {
         <div className='sidebar'>
             <div className="sidebar-container">
                 
-                <p><Link className='sidebar-links' to='/dashboard'>Dashboard</Link></p>
-                <p><Link className='sidebar-links' to='/pending'>Pending Donation</Link></p>
-                <p><Link className='sidebar-links' to='/previous'>Previous Donation</Link></p>
+                <Link className='sidebar-links' to='/dashboard'><p>Dashboard</p></Link>
+                <Link className='sidebar-links' to='/pending'><p>Pending Donation</p></Link>
+                <Link className='sidebar-links' to='/previous'><p>Previous Donation</p></Link>
                 
                 <span className='sidebar-logout' onClick={handleLogout}>Logout</span>
             </div>

@@ -8,53 +8,60 @@ function Signup() {
     username: '',
     email: '',
     password: '',
-    role: 'Donor'
+    role: 'Donor',
   });
 
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const signupHandler = async (e) => {
     e.preventDefault();
-  
+    setError(''); // Clear previous errors
+
+    // Validate email format
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Invalid email format');
+      return;
+    }
+
     try {
-      const response = await axios.post("http://localhost:8800/signup", formData);
-  
+      const response = await axios.post('http://localhost:8800/signup', formData);
+
       // Save user info to localStorage
-      localStorage.setItem("currentUser", JSON.stringify(response.data.user));
-  
+      localStorage.setItem('currentUser', JSON.stringify(response.data.user));
+
       // Redirect based on role
       switch (formData.role) {
-        case "Admin":
-          navigate("/login");
+        case 'Admin':
+          navigate('/login');
           break;
-        case "Donor":
-          window.location.href = "http://localhost:5173/";
+        case 'Donor':
+          window.location.href = 'http://localhost:5173/';
           break;
-        case "Agent":
-          navigate("/agent");
+        case 'Agent':
+          navigate('/agent');
           break;
         default:
-          navigate("/");
+          navigate('/');
       }
-  
+
       // Reset form
       setFormData({
-        username: "",
-        email: "",
-        password: "",
-        role: "Donor",
+        username: '',
+        email: '',
+        password: '',
+        role: 'Donor',
       });
-  
     } catch (error) {
-      alert("Signup failed: " + (error.response?.data?.error || error.message));
+      setError(`Signup failed: ${error.response?.data?.error || error.message}`);
     }
   };
-  
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -64,37 +71,41 @@ function Signup() {
         <div className="title">Sign Up</div>
         <div className="signup-form">
           <label htmlFor="username">Username</label>
-          <input 
-            type="text" 
-            name="username" 
-            value={formData.username} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
           />
 
           <label htmlFor="email">Email</label>
-          <input 
-            type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            title="Please enter a valid email address"
           />
 
           <label htmlFor="password">Password</label>
-          <input 
-            type="password" 
-            name="password" 
-            value={formData.password} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            minLength="6"
+            title="Password must be at least 6 characters long"
           />
 
           <label htmlFor="role">Role</label>
-          <select 
-            name="role" 
-            value={formData.role} 
-            onChange={handleChange} 
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
             className="role"
           >
             <option value="Admin">Admin</option>
@@ -102,7 +113,11 @@ function Signup() {
             <option value="Donor">Donor</option>
           </select>
 
-          <button id="btn" type="submit">Sign-up</button>
+          {error && <p className="error">{error}</p>} {/* Display error message */}
+
+          <button id="btn" type="submit">
+            Sign-up
+          </button>
           <p>
             Already have an account? <Link to="/login">Login</Link>
           </p>

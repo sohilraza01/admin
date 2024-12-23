@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Status.css";
 
-const Previous = () => {
-  const [donationHistory, setDonationHistory] = useState([]);
-
-  // Simulate fetching donation history
-  useEffect(() => {
-    const fetchHistory = async () => {
-      // Replace this with an API call to your backend
-      const history = [
-        { donor: "Sohil", foodType: "Grains", quantity: "50kg", status: "Delivered", date: "2024-12-01" },
-        { donor: "Shivam", foodType: "Vegetables", quantity: "20kg", status: "Delivered", date: "2024-11-25" },
-        { donor: "Sujal", foodType: "Fruits", quantity: "10kg", status: "Delivered", date: "2024-11-20" },
-        { donor: "Shiv Kaushik", foodType: "Rice", quantity: "10kg", status: "Delivered", date: "2024-11-20" },
-      ];
-      setDonationHistory(history);
-    };
-
-    fetchHistory();
-  }, []);
-
+const Previous = ({ completedDonations }) => {
   return (
-    <div className="previous">
+    <div className="status">
       <Sidebar />
-      <div className="previous-container">
-        <h2>Previous Donations</h2>
-        {donationHistory.length > 0 ? (
-          <table className="donation-table">
+      <div className="completed">
+        <h2>Completed Donations</h2>
+        {completedDonations.length > 0 ? (
+          <table className="completed-data">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Donor Name</th>
                 <th>Food Type</th>
                 <th>Quantity</th>
@@ -38,9 +21,10 @@ const Previous = () => {
               </tr>
             </thead>
             <tbody>
-              {donationHistory.map((donation, index) => (
-                <tr key={index}>
-                  <td>{donation.donor}</td>
+              {completedDonations.map((donation, index) => (
+                <tr key={donation._id}>
+                  <td>{index + 1}</td>
+                  <td>{donation.donorName}</td>
                   <td>{donation.foodType}</td>
                   <td>{donation.quantity}</td>
                   <td>{donation.status}</td>
@@ -50,7 +34,7 @@ const Previous = () => {
             </tbody>
           </table>
         ) : (
-          <p>No donation history available.</p>
+          <p>No completed donations available.</p>
         )}
       </div>
     </div>

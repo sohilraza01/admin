@@ -47,32 +47,51 @@
     border-bottom: none;
 }
 
+.complete-btn{
+    background-color: #007BFF;
+    font-size: 17px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 
 /* Previous donation */
-.previous {
+.completed {
     display: flex;
-}
-
-.previous-container {
-    flex: 1;
+    flex-direction: column;
     padding: 20px;
     background-color: #f9f9f9;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.donation-table {
+.completed-data {
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
     background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.completed-data th,
+.completed-data td {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #555;
+}
+.completed th {
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.completed-data tr:hover {
+    background-color: #f1f1f1;
 }
 
 .donation-table th,
@@ -82,6 +101,9 @@ h2 {
     border-bottom: 1px solid #ddd;
     font-size: 16px;
     color: #555;
+}
+.completed-data tr:last-child td {
+    border-bottom: none;
 }
 
 .donation-table th {

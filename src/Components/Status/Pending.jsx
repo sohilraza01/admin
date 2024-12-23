@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Status.css";
 
-const Pending = () => {
+const Pending = ({ fetchDonations }) => {
   const [pendingDonations, setPendingDonations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchPendingDonations = async () => {
@@ -14,22 +16,46 @@ const Pending = () => {
         }
 
         const data = await response.json();
-        const pending = data.filter((donation) => donation.status === "Pending"); // Filter for pending status
+        const pending = data.filter((donation) => donation.status === "Pending");
         setPendingDonations(pending);
-      } catch (error) {
-        console.error("Error fetching pending donations:", error);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchPendingDonations();
-  }, []); // Fetch data on mount
+  }, [fetchDonations]); // Re-fetch when parent triggers fetchDonations
+
+  const handleCompleteDonation = async (donationId) => {
+    try {
+      const response = await fetch(`http://localhost:8800/donations/${donationId}/complete`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to complete the donation");
+      }
+
+      // Trigger re-fetch of donations
+      fetchDonations();
+    } catch (error) {
+      console.error("Error completing donation:", error);
+    }
+  };
 
   return (
     <div className="status">
       <Sidebar />
       <div className="pending">
         <h2>Pending Donations</h2>
-        {pendingDonations.length > 0 ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error}</p>
+        ) : pendingDonations.length > 0 ? (
           <table className="pending-data">
             <thead>
               <tr>
@@ -39,17 +65,21 @@ const Pending = () => {
                 <th>Quantity</th>
                 <th>Status</th>
                 <th>Date</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {pendingDonations.map((donation) => (
+              {pendingDonations.map((donation, index) => (
                 <tr key={donation._id}>
-                  <td>{donation._id}</td> {/* Display the ID */}
+                  <td>{index + 1}</td>
                   <td>{donation.donorName}</td>
                   <td>{donation.foodType}</td>
                   <td>{donation.quantity}</td>
                   <td>{donation.status}</td>
                   <td>{donation.date}</td>
+                  <td>
+                    <button onClick={() => handleCompleteDonation(donation._id)} className="complete-btn">Complete</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
